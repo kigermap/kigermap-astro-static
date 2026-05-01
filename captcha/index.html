@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="zh-CN" data-astro-cid-afixlvqr> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>人机验证</title><style>:root{color-scheme:light;--bg-start: #f8f5ff;--bg-end: #eef3ff;--card-bg: rgba(255, 255, 255, .92);--text: #2f3142;--muted: #7e8096;--accent-start: #8b5cf6;--accent-end: #5b8cff;--border: rgba(139, 92, 246, .16)}[data-astro-cid-afixlvqr]{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:PingFang SC,Hiragino Sans GB,Noto Sans SC,sans-serif;background:radial-gradient(circle at top right,rgba(139,92,246,.14),transparent 34%),linear-gradient(180deg,var(--bg-start),var(--bg-end));color:var(--text)}.shell[data-astro-cid-afixlvqr]{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}.card[data-astro-cid-afixlvqr]{width:min(100%,420px);border-radius:28px;padding:28px 24px;background:var(--card-bg);border:1px solid var(--border);box-shadow:0 24px 60px #5b8cff24,inset 0 1px #fffc;backdrop-filter:blur(18px)}.eyebrow[data-astro-cid-afixlvqr]{font-size:12px;font-weight:700;letter-spacing:.22em;color:#8b5cf6bd}h1[data-astro-cid-afixlvqr]{margin:10px 0 8px;font-size:28px;line-height:1.15}p[data-astro-cid-afixlvqr]{margin:0;line-height:1.7;font-size:14px;color:var(--muted)}.status[data-astro-cid-afixlvqr]{min-height:24px;margin-top:18px;font-size:14px;color:#d84f77}.status[data-astro-cid-afixlvqr].success{color:#17a56f}.captcha-wrap[data-astro-cid-afixlvqr]{margin-top:24px}#aliyun-captcha-button[data-astro-cid-afixlvqr]{width:100%;min-height:52px;border:0;border-radius:18px;padding:0 18px;font-size:16px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--accent-start),var(--accent-end));box-shadow:0 16px 28px #5b8cff3d}#aliyun-captcha-button[data-astro-cid-afixlvqr]:disabled{opacity:.6}
+</style></head> <body data-astro-cid-afixlvqr> <div class="shell" data-astro-cid-afixlvqr> <div class="card" data-astro-cid-afixlvqr> <div class="eyebrow" data-astro-cid-afixlvqr>ALIYUN CAPTCHA</div> <h1 data-astro-cid-afixlvqr>完成安全验证</h1> <p data-astro-cid-afixlvqr>请完成一次阿里云人机验证，验证成功后会自动回到 App 继续发送验证码。</p> <div id="status" class="status" data-astro-cid-afixlvqr></div> <div id="aliyun-captcha-element" class="captcha-wrap" data-astro-cid-afixlvqr> <button id="aliyun-captcha-button" type="button" data-astro-cid-afixlvqr>开始验证</button> </div> </div> </div> <script>(function(){const sceneId = "1wu7t9tq";
+const prefix = "ut6aks";
+const region = "cn";
+
+      const statusEl = document.getElementById('status');
+      const buttonEl = document.getElementById('aliyun-captcha-button');
+
+      const postToApp = (payload) => {
+        const message = JSON.stringify(payload);
+        if (window.CaptchaBridge && typeof window.CaptchaBridge.postMessage === 'function') {
+          window.CaptchaBridge.postMessage(message);
+        }
+      };
+
+      const setStatus = (message, type = 'error') => {
+        statusEl.textContent = message || '';
+        statusEl.className = type ? `status ${type}` : 'status';
+      };
+
+      const notifyLoaded = () => postToApp({ type: 'loaded' });
+
+      if (!sceneId || !prefix) {
+        setStatus('当前环境未启用验证码，已直接放行。', 'success');
+        notifyLoaded();
+        postToApp({ type: 'success', captchaVerifyParam: '' });
+      } else {
+        window.AliyunCaptchaConfig = { region, prefix };
+
+        const script = document.createElement('script');
+        script.src =
+          'https://o.alicdn.com/captcha-frontend/aliyunCaptcha/AliyunCaptcha.js';
+        script.async = true;
+        script.onload = async () => {
+          try {
+            await window.initAliyunCaptcha({
+              SceneId: sceneId,
+              mode: 'popup',
+              element: '#aliyun-captcha-element',
+              button: '#aliyun-captcha-button',
+              captchaVerifyCallback: async (captchaVerifyParam) => {
+                setStatus('验证成功，正在返回 App…', 'success');
+                postToApp({ type: 'success', captchaVerifyParam });
+                return { captchaResult: true, bizResult: true };
+              },
+              onBizResultCallback: () => {
+                buttonEl.disabled = false;
+              },
+              language: 'cn',
+              slideStyle: {
+                width: 360,
+                height: 40,
+              },
+              onError: () => {
+                buttonEl.disabled = false;
+                setStatus('验证码加载失败，请重试。');
+                postToApp({ type: 'error', message: '验证码加载失败，请重试' });
+              },
+            });
+            notifyLoaded();
+          } catch (error) {
+            buttonEl.disabled = false;
+            setStatus('验证码初始化失败，请重试。');
+            postToApp({ type: 'error', message: '验证码初始化失败，请重试' });
+          }
+        };
+        script.onerror = () => {
+          buttonEl.disabled = false;
+          setStatus('验证码脚本加载失败，请检查网络后重试。');
+          postToApp({ type: 'error', message: '验证码脚本加载失败，请重试' });
+        };
+        document.head.appendChild(script);
+      }
+    })();</script> </body> </html>
