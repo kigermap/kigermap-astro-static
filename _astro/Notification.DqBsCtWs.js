@@ -1,0 +1,1 @@
+import{r as i}from"./index.DX2FeEyA.js";import{a2 as a}from"./App.CyOcvAbZ.js";function f(n){return{showNotification:i.useCallback((o,t="info")=>{a[t](o)},[]),NotificationComponent:null}}export{f as u};

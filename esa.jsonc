@@ -1,0 +1,7 @@
+{
+  "name": "kigermap-astro-static",
+  "assets": {
+    "directory": "./",
+    "notFoundStrategy": "singlePageApplication"
+  }
+}

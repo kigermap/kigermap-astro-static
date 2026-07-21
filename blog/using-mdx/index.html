@@ -1,0 +1,488 @@
+<!DOCTYPE html><html lang="zh-CN" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,viewport-fit=cover"><meta http-equiv="X-UA-Compatible" content="IE=edge"><link rel="icon" href="/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="KigerMap" href="/rss.xml"><meta name="generator" content="Astro v6.1.1"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#F6F8FB"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0D1219"><meta name="color-scheme" content="light dark"><!-- 防主题闪烁：首屏渲染前恢复用户主题 --><script>
+	(function () {
+		try {
+			var mode = "system";
+			var raw = localStorage.getItem("theme-storage");
+			if (raw) {
+				var parsed = JSON.parse(raw);
+				var stored = parsed && parsed.state && parsed.state.mode ? parsed.state.mode : parsed && parsed.mode;
+				if (stored === "dark" || stored === "light" || stored === "system") {
+					mode = stored;
+				}
+			}
+			var resolved = mode === "system"
+				? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+				: mode;
+			document.documentElement.setAttribute("data-theme", resolved);
+			document.documentElement.style.colorScheme = resolved;
+		} catch (e) {
+			document.documentElement.setAttribute("data-theme", "light");
+		}
+	})();
+</script><!-- Robots --><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><!-- Preconnect --><link rel="preconnect" href="https://restapi.amap.com" crossorigin><link rel="preconnect" href="https://webapi.amap.com" crossorigin><link rel="preconnect" href="https://api.kigermap.cn" crossorigin><link rel="preconnect" href="https://upload.kigermap.cn" crossorigin><link rel="preconnect" href="https://cdn-astro-static.kigermap.cn" crossorigin><link rel="dns-prefetch" href="https://restapi.amap.com"><link rel="dns-prefetch" href="https://webapi.amap.com"><link rel="dns-prefetch" href="https://api.kigermap.cn"><link rel="dns-prefetch" href="https://upload.kigermap.cn"><link rel="dns-prefetch" href="https://cdn-astro-static.kigermap.cn"><!-- Canonical URL --><link rel="canonical" href="https://kighub.cn/blog/using-mdx/"><!-- Primary Meta Tags --><title>Using MDX</title><meta name="title" content="Using MDX"><meta name="description" content="Lorem ipsum dolor sit amet"><meta name="author" content="KigerMap"><!-- Bing Webmaster --><meta name="msvalidate.01" content="0BD48478F2FB17419C4A9364056B5B44"><!-- Geo Tags — 全球 Kigurumi 社区，服务覆盖中国/日本/韩国/台湾等地区 --><meta name="geo.region" content="CN"><meta name="geo.placename" content="China"><meta name="geo.position" content="35.86;104.19"><meta name="ICBM" content="35.86, 104.19"><meta name="distribution" content="global"><meta name="coverage" content="Worldwide"><meta name="target" content="all"><meta name="rating" content="general"><meta name="revisit-after" content="3 days"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:site_name" content="KigerMap"><meta property="og:url" content="https://kighub.cn/blog/using-mdx/"><meta property="og:title" content="Using MDX"><meta property="og:description" content="Lorem ipsum dolor sit amet"><meta property="og:image" content="https://cdn-astro-static.kigermap.cn/_astro/share-og.CnX6R3QQ.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:locale" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><!-- Twitter --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="https://kighub.cn/blog/using-mdx/"><meta name="twitter:title" content="Using MDX"><meta name="twitter:description" content="Lorem ipsum dolor sit amet"><meta name="twitter:image" content="https://cdn-astro-static.kigermap.cn/_astro/share-og.CnX6R3QQ.png"><!-- JSON-LD Structured Data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"KigerMap","alternateName":["KigHub","Kigurumi Map","キガーマップ"],"url":"https://kighub.cn/","description":"Lorem ipsum dolor sit amet","inLanguage":["zh-CN","zh-TW","en","ja","ko"],"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://kighub.cn/search?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"KigerMap","url":"https://kighub.cn/","logo":"https://kighub.cn/favicon.ico","sameAs":[],"contactPoint":{"@type":"ContactPoint","email":"support@kigermap.cn","contactType":"customer service"}}</script><link rel="stylesheet" href="https://cdn-astro-static.kigermap.cn/_astro/BaseHead.14cSS2BI.css">
+<style>.prose[data-astro-cid-bvzihdzo]{color:var(--ink-2);font-size:15.5px;line-height:1.85}.prose[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo],.prose[data-astro-cid-bvzihdzo] h2[data-astro-cid-bvzihdzo],.prose[data-astro-cid-bvzihdzo] h3[data-astro-cid-bvzihdzo],.prose[data-astro-cid-bvzihdzo] h4[data-astro-cid-bvzihdzo]{color:var(--ink-1);letter-spacing:-.01em}.prose[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{font-size:24px;font-weight:800;margin:40px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--line)}.prose[data-astro-cid-bvzihdzo] h2[data-astro-cid-bvzihdzo]{font-size:20px;font-weight:700;margin:36px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}.prose[data-astro-cid-bvzihdzo] h3[data-astro-cid-bvzihdzo]{font-size:17px;font-weight:600;margin:28px 0 10px;padding-left:12px;border-left:3px solid var(--brand)}.prose[data-astro-cid-bvzihdzo] h4[data-astro-cid-bvzihdzo]{font-size:15px;font-weight:600;margin:22px 0 8px}.prose[data-astro-cid-bvzihdzo] p[data-astro-cid-bvzihdzo]{margin-bottom:16px}.prose[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]{color:var(--brand);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}.prose[data-astro-cid-bvzihdzo] a[data-astro-cid-bvzihdzo]:hover{text-decoration-thickness:2px}.prose[data-astro-cid-bvzihdzo] strong[data-astro-cid-bvzihdzo]{color:var(--ink-1);font-weight:600}.prose[data-astro-cid-bvzihdzo] ul[data-astro-cid-bvzihdzo],.prose[data-astro-cid-bvzihdzo] ol[data-astro-cid-bvzihdzo]{padding-left:22px;margin-bottom:18px}.prose[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]{margin-bottom:8px;line-height:1.75}.prose[data-astro-cid-bvzihdzo] li[data-astro-cid-bvzihdzo]::marker{color:var(--brand)}.prose[data-astro-cid-bvzihdzo] code[data-astro-cid-bvzihdzo]{padding:2px 7px;border-radius:6px;font-size:13px;background:var(--brand-soft);color:var(--brand);font-family:SF Mono,Fira Code,monospace}.prose[data-astro-cid-bvzihdzo] pre[data-astro-cid-bvzihdzo]{padding:18px;border-radius:12px;margin-bottom:22px;overflow-x:auto;background:var(--surface-1);border:1px solid var(--line)}.prose[data-astro-cid-bvzihdzo] pre[data-astro-cid-bvzihdzo] code[data-astro-cid-bvzihdzo]{padding:0;background:transparent;color:var(--ink-1)}.prose[data-astro-cid-bvzihdzo] hr[data-astro-cid-bvzihdzo]{border:none;height:1px;margin:36px 0;background:var(--line)}.prose[data-astro-cid-bvzihdzo] blockquote[data-astro-cid-bvzihdzo]{margin:22px 0;padding:14px 20px;border-left:3px solid var(--brand);background:var(--brand-soft);border-radius:0 12px 12px 0}.prose[data-astro-cid-bvzihdzo] blockquote[data-astro-cid-bvzihdzo] p[data-astro-cid-bvzihdzo]{margin-bottom:0}.prose[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{border-radius:12px}.prose[data-astro-cid-bvzihdzo] table[data-astro-cid-bvzihdzo]{width:100%;border-collapse:separate;border-spacing:0;margin:24px 0;font-size:13px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface-1)}.prose[data-astro-cid-bvzihdzo] th[data-astro-cid-bvzihdzo]{padding:12px 16px;font-weight:700;color:var(--ink-1);font-size:12px;background:var(--surface-2);border-bottom:1px solid var(--line);text-align:left}.prose[data-astro-cid-bvzihdzo] td[data-astro-cid-bvzihdzo]{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.62}.prose[data-astro-cid-bvzihdzo] tbody[data-astro-cid-bvzihdzo] tr[data-astro-cid-bvzihdzo]:last-child td[data-astro-cid-bvzihdzo]{border-bottom:none}
+</style><style>a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}
+</style></head> <body class="bg-bg min-h-screen flex flex-col" data-astro-cid-bvzihdzo> <header class="sticky top-0 z-40 bg-surface-1/90 backdrop-blur border-b border-line"> <nav class="max-w-4xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4"> <a href="/" class="text-base font-bold text-ink-1 tracking-tight hover:text-brand transition-colors duration-150">
+KigerMap
+</a> <div class="flex items-center gap-1"> <a href="/" class="px-3 h-9 inline-flex items-center rounded-lg text-sm font-medium transition-colors duration-150 text-ink-2 hover:text-ink-1 hover:bg-surface-2"> 首页 </a><a href="/blog" class="px-3 h-9 inline-flex items-center rounded-lg text-sm font-medium transition-colors duration-150 text-brand bg-brand-soft"> 博客 </a><a href="/archives" class="px-3 h-9 inline-flex items-center rounded-lg text-sm font-medium transition-colors duration-150 text-ink-2 hover:text-ink-1 hover:bg-surface-2"> 档案馆 </a><a href="/about" class="px-3 h-9 inline-flex items-center rounded-lg text-sm font-medium transition-colors duration-150 text-ink-2 hover:text-ink-1 hover:bg-surface-2"> 关于 </a> </div> </nav> </header> <main class="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12" data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo>  <header class="mb-10 pb-8 border-b border-line" data-astro-cid-bvzihdzo> <div class="text-xs text-ink-3 mb-3" data-astro-cid-bvzihdzo> <time datetime="2024-06-01T00:00:00.000Z"> Jun 1, 2024 </time>  </div> <h1 class="text-2xl sm:text-3xl font-bold text-ink-1 leading-snug tracking-tight mb-3" data-astro-cid-bvzihdzo>Using MDX</h1> <p class="text-sm sm:text-base text-ink-2 leading-relaxed" data-astro-cid-bvzihdzo>Lorem ipsum dolor sit amet</p> </header> <div class="prose" data-astro-cid-bvzihdzo>  <p>This theme comes with the <a href="https://docs.astro.build/en/guides/integrations-guide/mdx/">@astrojs/mdx</a> integration installed and configured in your <code>astro.config.mjs</code> config file. If you prefer not to use MDX, you can disable support by removing the integration from your config file.</p>
+<h2 id="why-mdx">Why MDX?</h2>
+<p>MDX is a special flavor of Markdown that supports embedded JavaScript &amp; JSX syntax. This unlocks the ability to <a href="https://docs.astro.build/en/guides/integrations-guide/mdx/#mdx-in-astro">mix JavaScript and UI Components into your Markdown content</a> for things like interactive charts or alerts.</p>
+<p>If you have existing content authored in MDX, this integration will hopefully make migrating to Astro a breeze.</p>
+<h2 id="example">Example</h2>
+<p>Here is how you import and use a UI component inside of MDX.<br/>
+When you open this page in the browser, you should see the clickable button below.</p>
+
+<a href="#" onclick="alert('clicked!')" data-astro-cid-eimmu3lg> <p>Embedded component in MDX</p> </a>
+<h2 id="more-links">More Links</h2>
+<ul>
+<li><a href="https://mdxjs.com/docs/what-is-mdx">MDX Syntax Documentation</a></li>
+<li><a href="https://docs.astro.build/en/basics/astro-pages/#markdownmdx-pages">Astro Usage Documentation</a></li>
+<li><strong>Note:</strong> <a href="https://docs.astro.build/en/reference/directives-reference/#client-directives">Client Directives</a> are still required to create interactive components. Otherwise, all components in your MDX will render as static HTML (no JavaScript) by default.</li>
+</ul>  </div> </article> </main> <footer class="border-t border-line mt-16"> <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4"> <p class="text-xs text-ink-3">
+&copy; 2026 KigerMap. All rights reserved.
+</p> <nav class="flex items-center gap-1 flex-wrap justify-center"> <a href="/" class="px-2.5 py-1.5 rounded-lg text-xs text-ink-2 hover:text-ink-1 hover:bg-surface-2 transition-colors duration-150"> 首页 </a><a href="/blog" class="px-2.5 py-1.5 rounded-lg text-xs text-ink-2 hover:text-ink-1 hover:bg-surface-2 transition-colors duration-150"> 博客 </a><a href="/archives" class="px-2.5 py-1.5 rounded-lg text-xs text-ink-2 hover:text-ink-1 hover:bg-surface-2 transition-colors duration-150"> 档案馆 </a><a href="/gallery" class="px-2.5 py-1.5 rounded-lg text-xs text-ink-2 hover:text-ink-1 hover:bg-surface-2 transition-colors duration-150"> 照片广场 </a><a href="/about" class="px-2.5 py-1.5 rounded-lg text-xs text-ink-2 hover:text-ink-1 hover:bg-surface-2 transition-colors duration-150"> 关于 </a> </nav> </div> </footer> <div id="kigmap-rag-enhancer-config" data-mobile-reserved-bottom="0" hidden></div> <style>
+	.kigmap-rag-toggle {
+		position: fixed;
+		z-index: 2147483647;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		width: 28px;
+		height: 28px;
+		border: 0;
+		border-radius: 999px;
+		background: var(--brand);
+		color: var(--on-brand);
+		box-shadow: var(--shadow-md);
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+		touch-action: manipulation;
+		transition: right 0.22s ease, left 0.22s ease, bottom 0.22s ease, width 0.22s ease, border-radius 0.22s ease, transform 0.18s ease, box-shadow 0.18s ease;
+	}
+
+	.kigmap-rag-toggle:active {
+		transform: scale(0.94);
+	}
+
+	.kigmap-rag-toggle svg {
+		width: 17px;
+		height: 17px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 2;
+	}
+
+	.kigmap-rag-toggle-expand {
+		display: none;
+	}
+
+	/* 悬浮球：品牌色圆形 56px */
+	body.kigmap-rag-enhanced .krw-fab {
+		width: 56px !important;
+		height: 56px !important;
+		border-radius: 999px !important;
+		background: var(--brand) !important;
+		color: var(--on-brand) !important;
+		box-shadow: var(--shadow-lg) !important;
+	}
+
+	/* 问答面板：token 化浅色/深色自适应 */
+	body.kigmap-rag-enhanced .krw-panel {
+		background: var(--surface-1) !important;
+		border: 1px solid var(--line) !important;
+		border-radius: 16px !important;
+		box-shadow: var(--shadow-xl) !important;
+		color: var(--ink-1) !important;
+	}
+
+	body.kigmap-rag-enhanced .krw-fab {
+		right: var(--kigmap-rag-fab-right, 24px) !important;
+		bottom: var(--kigmap-rag-fab-bottom, 24px) !important;
+		touch-action: none;
+		user-select: none;
+		-webkit-user-select: none;
+	}
+
+	body.kigmap-rag-enhanced.kigmap-rag-side-right .krw-panel,
+	body.kigmap-rag-enhanced.kigmap-rag-side-right .krw-badge {
+		right: var(--kigmap-rag-fab-right, 24px) !important;
+		left: auto !important;
+		bottom: var(--kigmap-rag-panel-bottom, 96px) !important;
+	}
+
+	body.kigmap-rag-enhanced.kigmap-rag-side-left .krw-panel,
+	body.kigmap-rag-enhanced.kigmap-rag-side-left .krw-badge {
+		left: var(--kigmap-rag-fab-left, 24px) !important;
+		right: auto !important;
+		bottom: var(--kigmap-rag-panel-bottom, 96px) !important;
+	}
+
+	@media (max-width: 768px) {
+		body.kigmap-rag-enhanced .krw-fab {
+			transition: opacity 0.18s ease, transform 0.18s ease, box-shadow 0.3s, right 0.22s ease, bottom 0.22s ease !important;
+		}
+
+		body.kigmap-rag-enhanced.kigmap-rag-side-right .krw-panel,
+		body.kigmap-rag-enhanced.kigmap-rag-side-left .krw-panel,
+		body.kigmap-rag-enhanced .krw-panel {
+			left: 12px !important;
+			right: 12px !important;
+			width: auto !important;
+			max-width: none !important;
+			bottom: var(--kigmap-rag-panel-bottom, calc(96px + env(safe-area-inset-bottom, 0px))) !important;
+			max-height: calc(100dvh - var(--kigmap-rag-panel-bottom, calc(96px + env(safe-area-inset-bottom, 0px))) - 12px) !important;
+			border-radius: 18px !important;
+		}
+
+		body.kigmap-rag-enhanced .krw-badge {
+			display: none !important;
+		}
+
+		body.kigmap-rag-enhanced.kigmap-rag-side-right .kigmap-rag-toggle {
+			display: flex;
+			left: auto;
+			right: calc(var(--kigmap-rag-fab-right, 16px) + 42px);
+			bottom: calc(var(--kigmap-rag-fab-bottom, 72px) + 42px);
+		}
+
+		body.kigmap-rag-enhanced.kigmap-rag-side-left .kigmap-rag-toggle {
+			display: flex;
+			left: calc(var(--kigmap-rag-fab-left, 16px) + 42px);
+			right: auto;
+			bottom: calc(var(--kigmap-rag-fab-bottom, 72px) + 42px);
+		}
+
+		body.kigmap-rag-collapsed .krw-fab,
+		body.kigmap-rag-collapsed .krw-panel,
+		body.kigmap-rag-collapsed .krw-badge {
+			opacity: 0 !important;
+			pointer-events: none !important;
+			transform: translateX(28px) scale(0.72) !important;
+		}
+
+		body.kigmap-rag-collapsed.kigmap-rag-side-left .krw-fab,
+		body.kigmap-rag-collapsed.kigmap-rag-side-left .krw-panel,
+		body.kigmap-rag-collapsed.kigmap-rag-side-left .krw-badge {
+			transform: translateX(-28px) scale(0.72) !important;
+		}
+
+		body.kigmap-rag-collapsed.kigmap-rag-side-right .kigmap-rag-toggle {
+			right: 0 !important;
+			left: auto !important;
+			bottom: var(--kigmap-rag-fab-bottom, 72px);
+			width: 42px;
+			height: 44px;
+			border-radius: 999px 0 0 999px;
+			box-shadow: var(--shadow-md);
+		}
+
+		body.kigmap-rag-collapsed.kigmap-rag-side-left .kigmap-rag-toggle {
+			left: 0 !important;
+			right: auto !important;
+			bottom: var(--kigmap-rag-fab-bottom, 72px);
+			width: 42px;
+			height: 44px;
+			border-radius: 0 999px 999px 0;
+			box-shadow: var(--shadow-md);
+		}
+
+		body.kigmap-rag-collapsed .kigmap-rag-toggle-collapse {
+			display: none;
+		}
+
+		body.kigmap-rag-collapsed .kigmap-rag-toggle-expand {
+			display: block;
+		}
+	}
+</style> <!-- Kigmap RAG intelligent assistant widget --> <script>
+	window.__kigmapRagWidgetRuntimeErrorHandler = function (event) {
+		var message = String(event && (event.message || (event.error && event.error.message)) || "");
+		var filename = String(event && event.filename || "");
+		if (filename.indexOf("kigmap-rag-widget") !== -1 || message.indexOf("Could not find Cubism 2 runtime") !== -1) {
+			window.__kigmapRagWidgetLoadFailed = true;
+			if (event.preventDefault) event.preventDefault();
+		}
+	};
+	window.addEventListener("error", window.__kigmapRagWidgetRuntimeErrorHandler, true);
+</script> <script src="https://cdn.jsdmirror.com/npm/kigmap-rag-widget@0.1.0/dist-sdk/kigmap-rag-widget.js" integrity="sha512-5Oe2GWegP2xrzFvo4rV0ZfO58M9aAjMAvjTtJz2HIpU9ubTsIPvAwW9kQvNibDG2ZImlQf2AQXD+SGJ1GbfyuA==" crossorigin="anonymous"></script> <script>
+	(function initKigmapRagWidget() {
+		if (window.__kigmapRagWidgetLoadFailed || !window.KigmapRAG || window.__kigmapRagWidgetEnhanced) return;
+		window.__kigmapRagWidgetEnhanced = true;
+
+		try {
+			window.KigmapRAG.init({
+				publicKey: "pk_VJ527xsBgx93IVu59mARC8PG",
+				secretKey: "sk_Mejdfuhd8b4sWScv6-k1eVK8_BqnxPLMMDygc8roCR8",
+				baseUrl: "https://rag.kigermap.cn",
+				mode: "chat",
+				primaryColor: "#3B82F6",
+				greeting: "你好！我是小K助手\n有什么关于 Kigurumi 的问题都可以问我~",
+				quickQuestions: ["什么是 Kigurumi？", "如何选择头壳工坊？", "出行需要准备什么？"],
+			});
+		} catch (_) {
+			window.__kigmapRagWidgetLoadFailed = true;
+			window.__kigmapRagWidgetEnhanced = false;
+			return;
+		}
+
+		var COLLAPSED_KEY = "kigmap-rag:collapsed";
+		var POSITION_KEY = "kigmap-rag:position";
+		var FAB_SIZE = 60;
+		var PANEL_GAP = 72;
+		var body = document.body;
+		var root = document.documentElement;
+		var config = document.getElementById("kigmap-rag-enhancer-config");
+		var mobileReservedBottom = Number(config && config.dataset.mobileReservedBottom) || 0;
+		var media = window.matchMedia("(max-width: 768px)");
+		var currentPosition = null;
+		var currentFab = null;
+		var suppressClickUntil = 0;
+		var safeAreaProbe = null;
+		var observer = null;
+		var scheduled = false;
+
+		function readJSON(key) {
+			try {
+				var value = window.localStorage.getItem(key);
+				return value ? JSON.parse(value) : null;
+			} catch (_) {
+				return null;
+			}
+		}
+
+		function writeJSON(key, value) {
+			try {
+				window.localStorage.setItem(key, JSON.stringify(value));
+			} catch (_) {}
+		}
+
+		function readCollapsed() {
+			try {
+				return window.localStorage.getItem(COLLAPSED_KEY) === "1";
+			} catch (_) {
+				return false;
+			}
+		}
+
+		function writeCollapsed(value) {
+			try {
+				window.localStorage.setItem(COLLAPSED_KEY, value ? "1" : "0");
+			} catch (_) {}
+		}
+
+		function getSafeAreaBottom() {
+			if (!safeAreaProbe) {
+				safeAreaProbe = document.createElement("div");
+				safeAreaProbe.style.position = "fixed";
+				safeAreaProbe.style.visibility = "hidden";
+				safeAreaProbe.style.pointerEvents = "none";
+				safeAreaProbe.style.height = "env(safe-area-inset-bottom, 0px)";
+				document.body.appendChild(safeAreaProbe);
+			}
+			return safeAreaProbe.getBoundingClientRect().height || 0;
+		}
+
+		function isMobile() {
+			return media.matches;
+		}
+
+		function getDefaultRight() {
+			return isMobile() ? 16 : 24;
+		}
+
+		function getMinimumBottom() {
+			var safeAreaBottom = isMobile() ? getSafeAreaBottom() : 0;
+			return (isMobile() ? mobileReservedBottom + safeAreaBottom + 16 : 16);
+		}
+
+		function getDefaultBottom() {
+			return isMobile() ? Math.max(getMinimumBottom(), 24) : 24;
+		}
+
+		function clampPosition(position) {
+			var margin = isMobile() ? 8 : 12;
+			var minBottom = getMinimumBottom();
+			var maxRight = Math.max(margin, window.innerWidth - FAB_SIZE - margin);
+			var maxBottom = Math.max(minBottom, window.innerHeight - FAB_SIZE - margin);
+			return {
+				right: Math.min(Math.max(position.right, margin), maxRight),
+				bottom: Math.min(Math.max(position.bottom, minBottom), maxBottom),
+			};
+		}
+
+		function getInitialPosition() {
+			var saved = readJSON(POSITION_KEY);
+			if (saved && typeof saved.right === "number" && typeof saved.bottom === "number") {
+				return clampPosition(saved);
+			}
+			return clampPosition({ right: getDefaultRight(), bottom: getDefaultBottom() });
+		}
+
+		function updateSide(position) {
+			var left = window.innerWidth - position.right - FAB_SIZE;
+			var side = left + FAB_SIZE / 2 < window.innerWidth / 2 ? "left" : "right";
+			body.classList.toggle("kigmap-rag-side-left", side === "left");
+			body.classList.toggle("kigmap-rag-side-right", side === "right");
+			root.style.setProperty("--kigmap-rag-fab-left", Math.max(8, left) + "px");
+		}
+
+		function applyPosition(position, persist) {
+			currentPosition = clampPosition(position);
+			root.style.setProperty("--kigmap-rag-fab-right", currentPosition.right + "px");
+			root.style.setProperty("--kigmap-rag-fab-bottom", currentPosition.bottom + "px");
+			root.style.setProperty("--kigmap-rag-panel-bottom", currentPosition.bottom + PANEL_GAP + "px");
+			updateSide(currentPosition);
+			if (persist) writeJSON(POSITION_KEY, currentPosition);
+		}
+
+		function snapPosition(position) {
+			var left = window.innerWidth - position.right - FAB_SIZE;
+			var centerX = left + FAB_SIZE / 2;
+			var sideMargin = isMobile() ? 12 : 16;
+			return clampPosition({
+				right: centerX > window.innerWidth / 2
+					? sideMargin
+					: window.innerWidth - FAB_SIZE - sideMargin,
+				bottom: position.bottom,
+			});
+		}
+
+		function ensureToggle() {
+			var toggle = document.getElementById("kigmap-rag-toggle");
+			if (toggle) return toggle;
+
+			toggle = document.createElement("button");
+			toggle.id = "kigmap-rag-toggle";
+			toggle.type = "button";
+			toggle.className = "kigmap-rag-toggle";
+			toggle.innerHTML =
+				'<span class="kigmap-rag-toggle-collapse" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"></path></svg></span>' +
+				'<span class="kigmap-rag-toggle-expand" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 12h.01"></path><path d="M12 12h.01"></path><path d="M16 12h.01"></path><path d="M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 0 1-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg></span>';
+			toggle.addEventListener("click", function () {
+				setCollapsed(!body.classList.contains("kigmap-rag-collapsed"), true);
+			});
+			document.body.appendChild(toggle);
+			return toggle;
+		}
+
+		function setCollapsed(collapsed, persist) {
+			var nextValue = isMobile() && collapsed;
+			body.classList.toggle("kigmap-rag-collapsed", nextValue);
+			var toggle = ensureToggle();
+			toggle.setAttribute("aria-label", nextValue ? "展开小K助手" : "收起小K助手");
+			toggle.setAttribute("title", nextValue ? "展开小K助手" : "收起小K助手");
+			toggle.setAttribute("aria-expanded", String(!nextValue));
+			if (persist) writeCollapsed(nextValue);
+		}
+
+		function bindFab(fab) {
+			if (!fab || fab === currentFab) return;
+			if (currentFab) {
+				currentFab.removeEventListener("pointerdown", onPointerDown);
+				currentFab.removeEventListener("click", onFabClickCapture, true);
+			}
+			currentFab = fab;
+			currentFab.addEventListener("pointerdown", onPointerDown, { passive: false });
+			currentFab.addEventListener("click", onFabClickCapture, true);
+		}
+
+		function onFabClickCapture(event) {
+			if (Date.now() < suppressClickUntil) {
+				event.preventDefault();
+				event.stopImmediatePropagation();
+			}
+		}
+
+		function onPointerDown(event) {
+			if (body.classList.contains("kigmap-rag-collapsed")) return;
+			if (!currentPosition) applyPosition(getInitialPosition(), false);
+
+			var startX = event.clientX;
+			var startY = event.clientY;
+			var startPosition = { right: currentPosition.right, bottom: currentPosition.bottom };
+			var hasMoved = false;
+			var pointerId = event.pointerId;
+
+			function onPointerMove(moveEvent) {
+				if (moveEvent.pointerId !== pointerId) return;
+				var dx = moveEvent.clientX - startX;
+				var dy = moveEvent.clientY - startY;
+
+				if (!hasMoved && Math.hypot(dx, dy) < 6) return;
+				hasMoved = true;
+				moveEvent.preventDefault();
+				applyPosition({
+					right: startPosition.right - dx,
+					bottom: startPosition.bottom - dy,
+				}, false);
+			}
+
+			function onPointerUp(upEvent) {
+				if (upEvent.pointerId !== pointerId) return;
+				window.removeEventListener("pointermove", onPointerMove);
+				window.removeEventListener("pointerup", onPointerUp);
+				window.removeEventListener("pointercancel", onPointerUp);
+
+				if (currentFab && currentFab.releasePointerCapture) {
+					try {
+						currentFab.releasePointerCapture(pointerId);
+					} catch (_) {}
+				}
+
+				if (hasMoved && currentPosition) {
+					suppressClickUntil = Date.now() + 350;
+					applyPosition(snapPosition(currentPosition), true);
+				}
+			}
+
+			if (currentFab && currentFab.setPointerCapture) {
+				try {
+					currentFab.setPointerCapture(pointerId);
+				} catch (_) {}
+			}
+
+			window.addEventListener("pointermove", onPointerMove, { passive: false });
+			window.addEventListener("pointerup", onPointerUp);
+			window.addEventListener("pointercancel", onPointerUp);
+		}
+
+		function refresh() {
+			scheduled = false;
+			body.classList.add("kigmap-rag-enhanced");
+			ensureToggle();
+
+			if (!currentPosition) {
+				applyPosition(getInitialPosition(), false);
+			} else {
+				applyPosition(currentPosition, false);
+			}
+
+			bindFab(document.querySelector(".krw-fab"));
+			setCollapsed(readCollapsed(), false);
+		}
+
+		function scheduleRefresh() {
+			if (scheduled) return;
+			scheduled = true;
+			window.requestAnimationFrame(refresh);
+		}
+
+		observer = new MutationObserver(scheduleRefresh);
+		observer.observe(document.body, { childList: true, subtree: true });
+		window.addEventListener("resize", function () {
+			safeAreaProbe = null;
+			scheduleRefresh();
+		});
+		if (media.addEventListener) {
+			media.addEventListener("change", scheduleRefresh);
+		} else if (media.addListener) {
+			media.addListener(scheduleRefresh);
+		}
+
+		scheduleRefresh();
+		setTimeout(scheduleRefresh, 300);
+		setTimeout(scheduleRefresh, 1000);
+	})();
+</script> </body></html>
