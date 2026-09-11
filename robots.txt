@@ -1,0 +1,32 @@
+User-agent: *
+Allow: /
+Allow: /shops/
+Allow: /u/
+Allow: /gatherings/
+Allow: /highlights/
+Allow: /about
+Allow: /faq
+Allow: /gallery
+Allow: /search
+
+Disallow: /admin
+Disallow: /admin/
+Disallow: /account/
+Disallow: /auth/
+Disallow: /profile/edit
+Disallow: /edit-shop/
+Disallow: /notifications
+Disallow: /favorites
+Disallow: /friends
+Disallow: /invite
+Disallow: /login
+Disallow: /register
+Disallow: /reset-password
+Disallow: /web/
+Disallow: /checkin
+Disallow: /api/
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+Sitemap: https://kighub.cn/sitemap-index.xml

@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.kigurumi.kigurumi_appplus",
+      "sha256_cert_fingerprints": [
+        "29:B0:43:4A:99:6A:18:42:E7:61:FC:63:B4:5B:B1:CE:1C:C2:AE:02:56:BD:C0:D3:97:46:22:64:16:24:0B:37"
+      ]
+    }
+  }
+]
