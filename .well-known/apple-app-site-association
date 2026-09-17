@@ -1,0 +1,18 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "8NMN8C7788.com.kigurumi.kigurumi_appplus",
+        "paths": [
+          "/u/*",
+          "/shops/*",
+          "/register",
+          "/explore",
+          "/gatherings/*",
+          "/highlights/*"
+        ]
+      }
+    ]
+  }
+}
